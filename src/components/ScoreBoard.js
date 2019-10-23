@@ -32,14 +32,16 @@ export default class Scoreboard extends Component {
             - For each element we return a Player element
             - We pass props name, score and id to the Player component
           */}
-          {this.state.players.map(player => (
-            <Player
-              id={player.id}
-              name={player.name}
-              score={player.score}
-              key={player.id}
-            />
-          ))}
+          {this.state.players
+            .sort((player1, player2) => player2.score - player1.score)
+            .map(player => (
+              <Player
+                id={player.id}
+                name={player.name}
+                score={player.score}
+                key={player.id}
+              />
+            ))}
         </ul>
       </div>
     );
