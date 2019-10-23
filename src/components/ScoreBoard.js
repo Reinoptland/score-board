@@ -17,6 +17,11 @@ export default class Scoreboard extends Component {
     ]
   };
 
+  // define callback prop
+  incrementScore = () => {
+    console.log("Hello! From incrementScore in ScoreBoard");
+  };
+
   // define a render method
   render() {
     // determines what the component displays
@@ -40,6 +45,8 @@ export default class Scoreboard extends Component {
                 name={player.name}
                 score={player.score}
                 key={player.id}
+                // pass callback to Player as a prop
+                incrementScore={this.incrementScore}
               />
             ))}
         </ul>
