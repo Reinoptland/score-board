@@ -3,6 +3,7 @@ import React, { Component } from "react";
 
 // import PLayer component
 import Player from "./Player";
+import AddPlayer from "./AddPlayer";
 
 // export the following thing:
 // The ScoreBoard class
@@ -15,6 +16,22 @@ export default class Scoreboard extends Component {
       { id: 2, name: "David", score: 14 },
       { id: 3, name: "Rein", score: 4 }
     ]
+  };
+
+  // Add player callback prop
+  addPlayer = name => {
+    // checking if name is in there
+    console.log("NAME in cbprop", name);
+    // create new player
+    const player = { id: this.state.players.length + 1, name: name, score: 0 };
+
+    // How to update players:
+    // Not like this: this.state.players.push(player) // ?????? NO! react does not know what you did!
+
+    // create new array using ... spread, add player at the end
+    const players = [...this.state.players, player];
+    // setState at the end
+    this.setState({ players: players });
   };
 
   // define callback prop
@@ -47,6 +64,8 @@ export default class Scoreboard extends Component {
     return (
       <div className="scoreboard">
         <h1>Scoreboard</h1>
+        {/* Pass addPlayer callback prop */}
+        <AddPlayer addPlayer={this.addPlayer} />
         <ul>
           {/* 
             We interpolate an expression:
