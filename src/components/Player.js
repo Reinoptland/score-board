@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 export default class Player extends Component {
   handleClick = () => {
-    this.props.incrementScore();
+    this.props.incrementScore(this.props.id);
   };
 
   render() {

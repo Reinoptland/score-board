@@ -18,8 +18,26 @@ export default class Scoreboard extends Component {
   };
 
   // define callback prop
-  incrementScore = () => {
+  incrementScore = userId => {
     console.log("Hello! From incrementScore in ScoreBoard");
+    console.log("Player", userId, "scored a point");
+
+    // we are going to use:
+
+    const updatedPlayers = this.state.players.map(player => {
+      // a conditional
+      if (player.id === userId) {
+        console.log("Update this player");
+        // make a copy of the player, with updated score
+        return { ...player, score: player.score + 1 };
+      }
+
+      console.log("Do not update this player");
+      return player;
+    });
+
+    // setState
+    this.setState({ players: updatedPlayers });
   };
 
   // define a render method
